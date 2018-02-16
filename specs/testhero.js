@@ -1,11 +1,3 @@
-// A. Create a constructor to create a Hero character
-//
-// - A Hero has a name
-// - A Hero has health
-// - A Hero has a favourite food
-// - A Hero can talk saying their name
-// - A Hero has a collection of tasks to complete, which leads nicely to -
-
 const assert = require('assert');
 const Hero = require('../hero');
 const Task = require('../task');
@@ -19,6 +11,10 @@ describe('Hero', function() {
 
   it('has a name', function(){
     assert.strictEqual(hero.name, "Ethel McDonald");
+  });
+
+  it('has health', function(){
+    assert.strictEqual(hero.health, 40);
   });
 
   it('has a favourite food', function(){
