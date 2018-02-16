@@ -26,5 +26,10 @@ describe('Task', function(){
 
   it('starts uncompleted', function(){
     assert.strictEqual(task.completed, false);
+  });
+
+  it('can be marked as completed', function(){
+    task.markAsCompleted();
+    assert.strictEqual(task.completed, true);
   })
 });

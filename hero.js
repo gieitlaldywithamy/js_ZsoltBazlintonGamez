@@ -4,4 +4,8 @@ const Hero = function(name, health, favouriteFood){
   this.favouriteFood = favouriteFood;
   this.tasks = [];
 };
+
+Hero.prototype.talk = function(){
+  return `I am ${this.name}`;
+}
 module.exports = Hero;
