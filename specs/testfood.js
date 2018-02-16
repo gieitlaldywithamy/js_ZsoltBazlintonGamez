@@ -2,7 +2,7 @@ const assert = require('assert');
 const Food = require('../food');
 
 describe('Food', function(){
-  const food;
+  let food;
 
   beforeEach(function(){
     food = new Food('bombas', 10);

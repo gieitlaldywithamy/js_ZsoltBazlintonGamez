@@ -3,7 +3,7 @@ const Hero = require('../hero');
 const Task = require('../task');
 
 describe('Hero', function() {
-  const hero;
+  let hero;
 
   beforeEach(function(){
     hero = new Hero('Ethel McDonald', 40, 'tablet');
