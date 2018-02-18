@@ -21,11 +21,14 @@ Hero.prototype.completeTask = function(completedTask){
 }
 
 Hero.prototype.eat = function(food){
-  if (this.favouriteFood == food){
-    this.health += food.replenishmentValue * 1.5;
+  let revilitisation;
+  if (this.favouriteFood === food){
+    revilitisation = food.replenishmentValue * 1.5;
   } else {
-    this.health += food.replenishmentValue;
+    revilitisation = food.replenishmentValue;
   }
+
+  food.poisonous ? this.health -= revilitisation : this.health += revilitisation;
 }
 
 Hero.prototype.sortTasksByDifficulty = function(){

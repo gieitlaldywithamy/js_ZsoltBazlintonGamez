@@ -1,12 +1,14 @@
 const assert = require('assert');
 const Hero = require('../hero');
 const Task = require('../task');
-const Food = require('../food')
+const Food = require('../food');
+const Rat = require('../rat');
 
 describe('Hero', function() {
   let hero;
   let tablet;
   let omelette;
+  let rat;
   let task1;
   let task2;
   let task3;
@@ -15,6 +17,7 @@ describe('Hero', function() {
     tablet = new Food('tablet', 6);
     omelette = new Food('omelette', 15);
     hero = new Hero('william wallace', 40, tablet);
+    rat = new Rat();
     task1 = new Task('raid Scone', 5, 1, 'take king as prisoner')
     task2 = new Task('collect arrows', 3, 4, 'has more weapons');
     task3 = new Task('destroy bridge', 4, 2, '20 archers')
@@ -59,6 +62,18 @@ describe('Hero', function() {
   it('can eat favourite food and restore by replenishmentValue * 1.5', function(){
     hero.eat(tablet);
     assert.strictEqual(hero.health, 49);
+  });
+
+  it('can eat poisonous favourite food and restore by -replenishmentValue * 1.5', function(){
+    rat.touch(tablet);
+    hero.eat(tablet);
+    assert.strictEqual(hero.health, 31);
+  });
+
+  it('when eats poisonous food loses health', function(){
+    rat.touch(omelette);
+    hero.eat(omelette);
+    assert.strictEqual(hero.health, 25);
   });
 
   it('can see only incomplete tasks', function(){
