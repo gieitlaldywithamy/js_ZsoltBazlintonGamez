@@ -31,17 +31,31 @@ Hero.prototype.eat = function(food){
   food.poisonous ? this.health -= revilitisation : this.health += revilitisation;
 }
 
-Hero.prototype.sortTasksByDifficulty = function(){
-    this.tasks.sort(function(task1, task2){
+Hero.prototype.sortTasks = function(sortType){
+  const sortFunction = function(task1, task2){
+    if (sortType === 'difficulty') {
       return task2.difficulty - task1.difficulty;
-    });
+    } else if (sortType === 'urgency') {
+      return task2.urgency - task1.urgency;
+    } else if(sortType == 'reward'){
+      return task2.reward = task1.reward;
+    }
+  }
+
+  this.tasks.sort(sortFunction);
 }
 
-Hero.prototype.sortTasksByUrgency = function(){
-  this.tasks.sort(function(task1, task2){
-    return task2.urgency - task1.urgency;
-  });
-}
+// Hero.prototype.sortTasksByDifficulty = function(){
+//     this.tasks.sort(function(task1, task2){
+//       return task2.difficulty - task1.difficulty;
+//     });
+// }
+//
+// Hero.prototype.sortTasksByUrgency = function(){
+//   this.tasks.sort(function(task1, task2){
+//     return task2.urgency - task1.urgency;
+//   });
+// }
 
 Hero.prototype.getIncompleteTasks = function(){
   return this.tasks.filter(function(task){

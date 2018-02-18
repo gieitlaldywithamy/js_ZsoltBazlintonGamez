@@ -101,12 +101,12 @@ describe('Hero', function() {
 
     it('can sort tasks by difficulty', function(){
       assert.deepEqual(hero.tasks, [task1, task2, task3]);
-      hero.sortTasksByDifficulty();
+      hero.sortTasks('difficulty');
       assert.deepEqual(hero.tasks, [task1, task3, task2]);
     });
 
     it('can sort tasks by urgency', function(){
-      hero.sortTasksByUrgency();
+      hero.sortTasks('urgency');
       assert.deepEqual(hero.tasks, [task2, task3, task1]);
     });
   });
