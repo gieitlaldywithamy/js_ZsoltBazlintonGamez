@@ -3,6 +3,7 @@ const Hero = require('../hero');
 const Task = require('../task');
 const Food = require('../food');
 const Rat = require('../rat');
+const TaskEnum = require('../task_enum');
 
 describe('Hero', function() {
   let hero;
@@ -18,9 +19,9 @@ describe('Hero', function() {
     omelette = new Food('omelette', 15);
     hero = new Hero('william wallace', 40, tablet);
     rat = new Rat();
-    task1 = new Task('raid Scone', 5, 1, 'take king as prisoner')
-    task2 = new Task('collect arrows', 3, 4, 'has more weapons');
-    task3 = new Task('destroy bridge', 4, 2, '20 archers')
+    task1 = new Task('raid Scone', TaskEnum.DIFFICULTY.HIGH, TaskEnum.URGENCY.LOW, 'take king as prisoner')
+    task2 = new Task('collect arrows', TaskEnum.DIFFICULTY.LOW, TaskEnum.URGENCY.LOW, 'has more weapons', false);
+    task3 = new Task('destroy bridge', TaskEnum.DIFFICULTY.MEDIUM, TaskEnum.URGENCY.MEDIUM, '20 archers', false)
   });
 
   it('has a name', function(){
@@ -34,6 +35,10 @@ describe('Hero', function() {
   it('has a favourite food', function(){
     assert.strictEqual(hero.favouriteFood, tablet);
   });
+
+  it('has a score that starts at 0', function(){
+    assert.deepEqual(hero.bag, new Map());
+  })
 
   it('can talk', function(){
     assert.strictEqual(hero.talk(), 'I am william wallace');

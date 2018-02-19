@@ -5,6 +5,7 @@ const Hero = function(name, health, favouriteFood){
   this.health = health;
   this.favouriteFood = favouriteFood;
   this.tasks = [];
+  this.bag = new Map();
 };
 
 Hero.prototype.talk = function(){
@@ -33,14 +34,17 @@ Hero.prototype.eat = function(food){
 
 Hero.prototype.sortTasks = function(sortType){
   const sortFunction = function(task1, task2){
-    if (sortType === 'difficulty') {
-      return task2.difficulty - task1.difficulty;
-    } else if (sortType === 'urgency') {
-      return task2.urgency - task1.urgency;
-    } else if(sortType == 'reward'){
-      return task2.reward = task1.reward;
-    }
+    return task2[sortType] - task1[sortType];
   }
+  // const sortFunction = function(task1, task2){
+  //   if (sortType === 'difficulty') {
+  //     return task2.difficulty - task1.difficulty;
+  //   } else if (sortType === 'urgency') {
+  //     return task2.urgency - task1.urgency;
+  //   } else if(sortType == 'reward'){
+  //     return task2.reward = task1.reward;
+  //   }
+  // }
 
   this.tasks.sort(sortFunction);
 }

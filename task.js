@@ -1,9 +1,9 @@
-const Task = function(description, difficulty, urgency, reward, completed){
-  this.description = description;
-  this.difficulty = difficulty;
-  this.urgency = urgency;
-  this.reward = reward;
-  this.completed = false;
+const Task = function(params){
+  this.description = params.description;
+  this.difficulty = params.difficulty;
+  this.urgency = params.urgency;
+  this.reward = params.reward;
+  this.completed = params.complete || false;
 };
 
 Task.prototype.markAsCompleted = function(){
