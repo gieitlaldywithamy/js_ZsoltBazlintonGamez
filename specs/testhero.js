@@ -13,15 +13,34 @@ describe('Hero', function() {
   let task1;
   let task2;
   let task3;
+  let taskdetail;
 
   beforeEach(function(){
     tablet = new Food('tablet', 6);
     omelette = new Food('omelette', 15);
     hero = new Hero('william wallace', 40, tablet);
     rat = new Rat();
-    task1 = new Task('raid Scone', TaskEnum.DIFFICULTY.HIGH, TaskEnum.URGENCY.LOW, 'take king as prisoner')
-    task2 = new Task('collect arrows', TaskEnum.DIFFICULTY.LOW, TaskEnum.URGENCY.LOW, 'has more weapons', false);
-    task3 = new Task('destroy bridge', TaskEnum.DIFFICULTY.MEDIUM, TaskEnum.URGENCY.MEDIUM, '20 archers', false)
+    taskDetail = {
+      description: "raid scone",
+      difficulty: TaskEnum.DIFFICULTY.HARD,
+      urgency: TaskEnum.URGENCY.LOW,
+      reward: "take king as prisoner"
+    }
+    task1 = new Task(taskDetail);
+    taskDetail = {
+      description: "collect arrows",
+      difficulty: TaskEnum.DIFFICULTY.EASY,
+      urgency: TaskEnum.URGENCY.MEDIUM,
+      reward: "more weapons"
+    }
+    task2 = new Task(taskDetail);
+    taskDetail = {
+      description: "destroy bridge",
+      difficulty: TaskEnum.DIFFICULTY.MEDIUM,
+      urgency: TaskEnum.URGENCY.MEDIUM,
+      reward: "20 archers"
+    }
+    task3 = new Task(taskDetail);
   });
 
   it('has a name', function(){
@@ -105,14 +124,16 @@ describe('Hero', function() {
     });
 
     it('can sort tasks by difficulty', function(){
+      //why is this working?
       assert.deepEqual(hero.tasks, [task1, task2, task3]);
-      hero.sortTasks('difficulty');
+      hero.sortTasks("difficulty");
       assert.deepEqual(hero.tasks, [task1, task3, task2]);
     });
 
     it('can sort tasks by urgency', function(){
-      hero.sortTasks('urgency');
-      assert.deepEqual(hero.tasks, [task2, task3, task1]);
+      hero.sortTasks(TaskEnum.URGENCY);
+      assert.deepEqual(hero.tasks, [task1, task2, task3]);
+      // assert.deepEqual(hero.tasks, [task2, task3, task1]);
     });
   });
 
